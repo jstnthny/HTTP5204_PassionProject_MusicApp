@@ -1,0 +1,23 @@
+﻿@model PassionProjectV1.Models.ViewModels.DetailsGenre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/Genre/List">List of genres</a>
+<br />
+<a style="color:darkred;" href="/Genre/DeleteConfirm/@Model.SelectedGenre.GenreId">Delete</a>
+<br />
+<a href="/Genre/Edit/@Model.SelectedGenre.GenreId">Update</a> <br />
+
+<h2>Genre: @Model.SelectedGenre.Genre</h2>
+
+<div>
+    <h3>Songs:</h3>
+    @foreach (var song in Model.SongGenre)
+    {
+        <a href="/Song/Details/@song.SongId">@song.SongName</a><br />
+    }
+
+ 
+</div>

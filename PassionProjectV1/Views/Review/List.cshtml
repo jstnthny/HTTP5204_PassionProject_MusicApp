@@ -1,0 +1,13 @@
+﻿@model IEnumerable<PassionProjectV1.Models.ReviewDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<a href="/Review/New">Add a new review</a>
+<h2>List</h2>
+@foreach (var review in Model)
+{
+    <h2><a href="/Review/Details/@review.ReviewId">@review.SongName</a></h2>
+    <div>@review.ReviewText</div>
+    <div>By: @review.fname @review.lname</div>
+}

@@ -1,0 +1,26 @@
+﻿@model PassionProjectV1.Models.SongDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Song</h2>
+
+<form action="/Song/Update/@Model.SongId" method="POST">
+    <div style="display:none;">
+        <input type="text" name="SongId" value="@Model.SongId" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="SongName" value="@Model.SongName" />
+    </div>
+    <div>
+        <label>Arist:</label> <input type="text" name="Artist" value="@Model.Artist" />
+    </div>
+    <div>
+        <label>Album:</label> <input type="text" name="Album" value="@Model.Album" />
+    </div>
+    <div>
+        <input type="submit" value="Update Song" />
+    </div>
+</form>
+

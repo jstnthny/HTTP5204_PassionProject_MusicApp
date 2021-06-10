@@ -1,0 +1,13 @@
+﻿@model IEnumerable<PassionProjectV1.Models.SongDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<a href="/Song/New">Add a new song</a>
+<h2>List</h2>
+@foreach (var song in Model)
+{
+    <h2><a href="/Song/Details/@song.SongId">@song.SongName</a></h2>
+    <div>By @song.Artist</div>
+    <div>Album: @song.Album</div>
+}

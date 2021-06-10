@@ -1,0 +1,15 @@
+﻿@model PassionProjectV1.Models.ReviewDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/Review/List">List of reviews</a>
+<br />
+<a href="/Review/Edit/@Model.ReviewId">Update</a> <br />
+<a style="color:darkred;" href="/Review/DeleteConfirm/@Model.ReviewId">Delete</a>
+
+<h2>@Model.SongName</h2>
+<div>@Model.ReviewText</div>
+<div>By: @Model.fname @Model.lname</div>
+

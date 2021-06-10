@@ -1,0 +1,22 @@
+﻿
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Song</h2>
+
+<form action="/Song/Create" method="POST">
+    <div>
+        <label>Name:</label> <input type="text" name="SongName" />
+    </div>
+    <div>
+        <label>Arist:</label> <input type="text" name="Artist" />
+    </div>
+    <div>
+        <label>Album:</label> <input type="text" name="Album" />
+    </div>
+    <div>
+        <input type="submit" value="Add Song" />
+    </div>
+</form>
