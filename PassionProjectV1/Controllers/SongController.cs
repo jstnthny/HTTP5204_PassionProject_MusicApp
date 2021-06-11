@@ -114,6 +114,7 @@ namespace PassionProjectV1.Controllers
         }
 
         //POST: Song/AddNew/{songid}{genreid}
+        //Enabling authorize makes it so only registered users (admins) can make changes to data (Create new songs, update songs & delete songs) 
         [HttpPost]
         [Authorize]
    

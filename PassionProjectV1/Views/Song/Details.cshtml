@@ -42,8 +42,15 @@
 <div style="margin-top:50px;">
     <h3>Reviews for song</h3>
     @foreach(var review in Model.RelatedReviews)
+        
     {
-        <a href="/Review/Details/@review.ReviewId">@review.ReviewText</a>
+        
+        <ul>
+            <li>
+                <a href="/Review/Details/@review.ReviewId">@review.ReviewText</a>
+            </li>
+        </ul>
+   
     }
 </div>
 

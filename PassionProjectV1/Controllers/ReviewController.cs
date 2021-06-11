@@ -86,8 +86,10 @@ namespace PassionProjectV1.Controllers
             return View();
         }
 
+
+        //Users will be able to add new reviews without an account 
         // GET: Review/New
-        [Authorize]
+      
         public ActionResult New()
         {
             //information about all songs in the system
@@ -102,7 +104,7 @@ namespace PassionProjectV1.Controllers
 
         // POST: Review/Create
         [HttpPost]
-        [Authorize]
+    
         public ActionResult Create(Reviews review)
         {
             GetApplicationCookie(); 
