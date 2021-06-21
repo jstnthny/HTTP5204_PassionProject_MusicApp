@@ -18,9 +18,18 @@ namespace PassionProjectV1.Controllers
     public class SongDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-      
 
-        // GET: api/SongData/ListSongs
+        /// <summary>
+        /// Returns all songs in the system
+        /// </summary>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// Content: all songs in the db
+        /// </returns>
+        /// <example>
+        /// GET: api/SongData/ListSongs
+        /// </example>
+
         [HttpGet]
         public IEnumerable<SongDto> ListSongs()
         {
@@ -142,7 +151,21 @@ namespace PassionProjectV1.Controllers
             return Ok();
         }
 
-        // GET: api/SongData//FindSong/5
+        /// <summary>
+        /// Returns all songs in the system
+        /// </summary>
+        /// <param name="id">Primary key of a song</param>
+        /// <returns>
+        /// Header 200 (OK)
+        /// Content: A song in the system matching up to the song id primary key
+        /// or 
+        /// Header 404 (Not found)
+        /// </returns>
+        /// <example>
+        /// GET: api/SongData//FindSong/5
+        /// </example>
+
+
         [ResponseType(typeof(Song))]
         [HttpGet]
         public IHttpActionResult FindSong(int id)
@@ -167,7 +190,22 @@ namespace PassionProjectV1.Controllers
             return Ok(SongDto);
         }
 
-        // POST: api/SongData/UpdateSong/5
+        /// <summary>
+        /// Updates a particular song in the system with POST data input
+        /// </summary>
+        /// <param name="id">Represents the song id primrary key</param>
+        /// <param name="song">JSON form data of a song</param>
+        /// <returns>
+        /// Header: 204 (Success, No content response)
+        /// or
+        /// Header: 400 (Bad Request)
+        /// or
+        /// Header: 404 (Not found)
+        /// </returns>
+        /// <example>
+        /// POST: api/SongData/UpdateSong/5
+        /// </example>
+
         [ResponseType(typeof(void))]
         [HttpPost]
         [Authorize]
@@ -214,8 +252,17 @@ namespace PassionProjectV1.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        //POST: api/SongData/UpdateSongPic/5
-        
+
+        /// <summary>
+        /// Recieves album picture data, uploads it to the web server and updates the song's HasPic option
+        /// </summary>
+        /// <param name="id">song id</param>
+        /// <returns>status code 200 if successful</returns>
+        /// <example>
+        /// POST: api/SongData/UpdateSongPic/5
+        /// </example>
+
+
         [HttpPost]
         
         public IHttpActionResult UploadAlbumPic(int id)
@@ -285,11 +332,22 @@ namespace PassionProjectV1.Controllers
                 return BadRequest();
             }
         }
-    
-        
-        
 
-        // POST: api/SongData/AddSong
+
+        /// <summary>
+        /// Add a song to the system
+        /// </summary>
+        /// <param name="song">JSON form data of a song</param>
+        /// <returns>
+        /// Header: 201 (Created)
+        /// Content: Song ID, Song data
+        /// </returns>
+        /// <example>
+        /// POST: api/SongData/AddSong
+        /// FORM DATA: Song JSON Object
+        /// </example>
+
+
         [ResponseType(typeof(Song))]
         [Authorize]
         [HttpPost]
@@ -306,7 +364,20 @@ namespace PassionProjectV1.Controllers
             return CreatedAtRoute("DefaultApi", new { id = song.SongId }, song);
         }
 
-        // POST: api/SongData/DeleteSong/5
+        /// <summary>
+        /// Delete a song from the system by it's ID
+        /// </summary>
+        /// <param name="id">Primary key of a song</param>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// or 
+        /// Header: 404 (Not found)
+        /// </returns>
+        /// <example>
+        /// POST: api/SongData/DeleteSong/5
+        /// Form data: (empty)
+        /// </example>
+
         [ResponseType(typeof(Song))]    
         [Authorize]
         [HttpPost]

@@ -78,7 +78,7 @@ namespace PassionProjectV1.Controllers
             return Ok(GenreDtos);
         }
 
-        /// Returns all Genres in the system
+        /// Returns all Genres in the system not included in a song
         /// </summary>
         /// <returns>
         /// Header: 200 (OK)
@@ -109,10 +109,16 @@ namespace PassionProjectV1.Controllers
             return Ok(GenreDtos);
         }
 
-        /*
-      
-        */
-        // GET: api/GenreData/FindGenre/5
+        /// Returns all Genres in the system 
+        /// </summary>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// Content: A genre in the system matching up to the Genre ID primary key
+        /// </returns>
+        /// <param name="id">Song Primary Key</param>
+        /// <example>
+        /// GET: api/GenreData/FindGenre/5
+        /// </example>
         [ResponseType(typeof(Genres))]
         [HttpGet]
         public IHttpActionResult FindGenre(int id)
@@ -132,7 +138,18 @@ namespace PassionProjectV1.Controllers
             return Ok(GenreDto);
         }
 
-        // POST: api/UpdateGenre/5
+        /// <summary>
+        /// Updates a particular Genre in the system with POST data input
+        /// </summary>
+        /// <param name="id">Repersents the Genre ID primary key</param>
+        /// <param name="genres">JSON form data of a genre</param>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// </returns>
+        /// <example>
+        /// POST: api/UpdateGenre/5
+        /// FORM Data: Genre JSON object
+        /// </example>
         [ResponseType(typeof(void))]
         [Authorize]
         [HttpPost]
@@ -175,8 +192,20 @@ namespace PassionProjectV1.Controllers
             Debug.WriteLine("None of the conditions trigger");
             return StatusCode(HttpStatusCode.NoContent);
         }
+        /// <summary>
+        /// Add a genre to the system
+        /// </summary>
+        /// <param name="genres">JSON From data of a genre</param>
+        /// <returns>
+        /// Header: 201 (Created)
+        /// Content: Genre ID, Genre Data
+        /// or
+        /// Header: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/GenreData/AddGenre
+        /// </example>
 
-        // POST: api/GenreData/AddGenre
         [ResponseType(typeof(Genres))]
         [Authorize]
         [HttpPost]
@@ -193,7 +222,19 @@ namespace PassionProjectV1.Controllers
             return CreatedAtRoute("DefaultApi", new { id = genres.GenreId }, genres);
         }
 
-        // POST: api/GenreData/DeleteGenre/5
+        /// <summary>
+        /// Deletes a genre from the system by its ID
+        /// </summary>
+        /// <param name="id">Primary key of the genre</param>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// or
+        /// Header: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        ///  POST: api/GenreData/DeleteGenre/5
+        /// </example>
+
         [ResponseType(typeof(Genres))]
         [Authorize]
         [HttpPost]

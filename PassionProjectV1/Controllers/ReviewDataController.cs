@@ -17,7 +17,16 @@ namespace PassionProjectV1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        //Shows all Reviews
+       /// <summary>
+       /// Shows all Reviews
+       /// </summary>
+       /// <returns>
+       /// Header: 200 (OK)
+       /// Content: All Reviews in the database
+       /// </returns>
+       /// <example>
+       /// GET: api/ReviewData/ListReviews/3
+       /// </example>
 
         [HttpGet]
         [ResponseType(typeof(ReviewDto))]
@@ -39,12 +48,11 @@ namespace PassionProjectV1.Controllers
         }
 
 
-        // GET: api/ReviewData/ListReviews
         /// <summary>
         /// Gathers information about all reviews for a particular song ID
         /// </summary>
         /// <returns>
-        /// <param name="id">Song ID.></param>
+        /// <param name="id">Song ID></param>
         /// </returns>
         /// <example>
         /// GET: api/ReviewData/ListReviewsForSong/3
@@ -70,14 +78,22 @@ namespace PassionProjectV1.Controllers
 
             return Ok(ReviewDtos);
         }
-
-        
+        /// <summary>
+        /// Gathers information about all reviews for a particular song ID
+        /// </summary>
+        /// <returns>
+        /// <param name="id">Song ID></param>
+        /// </returns>
+        /// <example>
+        /// GET: api/ReviewData/ListReviewsForSong/3
+        /// </example>
+        /// 
 
         [HttpGet]
         [ResponseType(typeof(ReviewDto))]
         public IEnumerable<ReviewDto> ListReviewsForSong(int id)
         {
-            List<Reviews> Reviews = db.Reviews.Where(r=>r.SongId==id).ToList();
+            List<Reviews> Reviews = db.Reviews.Where(r => r.SongId == id).ToList();
             List<ReviewDto> ReviewDtos = new List<ReviewDto>();
 
             Reviews.ForEach(r => ReviewDtos.Add(new ReviewDto()
@@ -92,8 +108,20 @@ namespace PassionProjectV1.Controllers
             return ReviewDtos;
         }
 
-        
-        // GET: api/ReviewData/FindReview/5
+
+        /// <summary>
+        /// Returns all reviews in the system
+        /// </summary>
+        /// <param name="id">Primary key of the review</param>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// Content: A review in the system that matches up the the review ID primary key
+        /// </returns>
+        /// <example>
+        /// GET: api/ReviewData/FindReview/5
+        /// </example>
+
+
         [ResponseType(typeof(Reviews))]
         [HttpGet]
         public IHttpActionResult FindReview(int id)
@@ -116,7 +144,22 @@ namespace PassionProjectV1.Controllers
             return Ok(ReviewDto);
         }
 
-        // POST: api/ReviewData/UpdateReview/5
+        /// <summary>
+        /// Updates a review in the system with POST data input
+        /// </summary>
+        /// <param name="id">Primary key of the review</param>
+        /// <param name="reviews">JSON form data of a review</param>
+        /// <returns>
+        /// Header: 204 (Success, No Content Response)
+        /// or 
+        /// Header: 400 (Bad Request)
+        /// or
+        /// Header: 404 (Not found)
+        /// </returns>
+        /// <example>
+        /// POST: api/ReviewData/UpdateReview/5
+        /// </example>
+
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateReview(int id, Reviews reviews)
@@ -157,7 +200,20 @@ namespace PassionProjectV1.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/ReviewData/AddReview
+        /// <summary>
+        /// Add a review to the system
+        /// </summary>
+        /// <param name="reviews">JSON form data of a review</param>
+        /// <returns>
+        /// Header: 201 (Created)
+        /// Content: Review ID, review data
+        /// or 
+        /// Header: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/ReviewData/AddReview
+        /// </example>
+
         [ResponseType(typeof(Reviews))]
         [HttpPost]
         public IHttpActionResult AddReviews(Reviews reviews)
@@ -172,8 +228,19 @@ namespace PassionProjectV1.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = reviews.ReviewId }, reviews);
         }
+        /// <summary>
+        /// Delete an review from the system by its id
+        /// </summary>
+        /// <param name="id">The primary key of a review</param>
+        /// <returns>
+        /// Header: 200 (OK)
+        /// or 
+        /// Header: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/ReviewData/DeleteReview/5
+        /// </example>
 
-        // POST: api/ReviewData/DeleteReview/5
         [ResponseType(typeof(Reviews))]
         [HttpPost]
         public IHttpActionResult DeleteReviews(int id)
