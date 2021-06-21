@@ -3,13 +3,22 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Add a new genre</h2>
+<div class="main-content">
+    <form action="/Genre/List">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="SongList" value="List of Genres" />
+    </form>
 
-<form action="/Genre/Create" method="POST">
-    <div>
-        <label>Genre:</label> <input type="text" name="Genre" />
-    </div>
-    <div>
-        <input type="submit" value="Add new Genre" />
-    </div>
-</form>
+    <form action="/Genre/Create" method="POST" class="create-new-song-form">
+        <h2>Add a new genre &#127925;</h2>
+      
+        <div>
+            <label>Genre:</label> <input type="text" name="Genre" />
+        </div>
+        <div>
+            <input class="btn btn-info" type="submit" value="Add new Genre" style="margin-top: 15px;"/>
+        </div>
+    </form>
+
+
+</div>
+

@@ -19,6 +19,11 @@ namespace PassionProjectV1.Models
 
         public string Artist { get; set; }
 
+        //data needed for keeping track of album umages uploaded
+
+        public bool AlbumHasPic {get; set;}
+        public string PicExtention {get; set;} 
+
         //A song can have many genres
         public ICollection<Genres> Genres { get; set; }
 
@@ -37,5 +42,10 @@ namespace PassionProjectV1.Models
         public string Artist { get; set; }
 
         public string SongGenre { get; set; }
+
+        //data needed for keeping track of album images uploaded
+        //images deposited into /Content/AlbumImages/{id}.{extension} 
+        public bool AlbumHasPic { get; set; }
+        public string PicExtention { get; set; }
     }
 }

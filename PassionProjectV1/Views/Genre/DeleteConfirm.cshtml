@@ -4,11 +4,16 @@
     ViewBag.Title = "DeleteConfirm";
 }
 
-<h2>Are you sure you want to delete this genre?</h2>
-<a href="/Genre/List">Cancel</a>
-<h2>@Model.Genre</h2>
+<div class="main-content">
+    <h2>Are you sure you want to delete this genre?</h2>
+    <form action="/Genre/List">
+        <input type="submit" class="btn btn-info" name="GenreList" value="Cancel" />
+    </form>
+    <h2>@Model.Genre</h2>
 
-<form action="/Genre/Delete/@Model.GenreId" method="POST">
-       <input type="submit" value="Confirm Delete" />
+    <form action="/Genre/Delete/@Model.GenreId" method="POST">
+        <input type="submit" class="btn btn-success" value="Confirm Delete" />
 
-</form>
+    </form>
+
+</div>

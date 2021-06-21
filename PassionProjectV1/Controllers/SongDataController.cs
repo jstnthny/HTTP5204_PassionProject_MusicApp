@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Web;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -16,6 +18,7 @@ namespace PassionProjectV1.Controllers
     public class SongDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+      
 
         // GET: api/SongData/ListSongs
         [HttpGet]
@@ -30,9 +33,11 @@ namespace PassionProjectV1.Controllers
                 SongName = s.SongName,
                 Album = s.Album,
                 AlbumUrl = s.AlbumUrl,
-                Artist = s.Artist
-                
-            })); 
+                Artist = s.Artist,
+                AlbumHasPic = s.AlbumHasPic,
+                PicExtention = s.PicExtention
+
+            })); ; 
 
             return SongDtos;
 
@@ -86,6 +91,7 @@ namespace PassionProjectV1.Controllers
         /// <example>
         /// POST api/SongData/AddGenreToSong/6/5
         /// </example>
+
         [HttpPost]
         [Route("api/songdata/AddGenreToSong/{songid}/{genreid}")]
         public IHttpActionResult AddGenreToSong(int songid, int genreid)
@@ -117,6 +123,7 @@ namespace PassionProjectV1.Controllers
         /// <example>
         /// POST api/SongData/RemoveGenreFromSong/6/5
         /// </example>
+    
         [HttpPost]
         [Route("api/songdata/RemoveGenreFromSong/{songid}/{genreid}")]
         public IHttpActionResult RemoveGenreFromSong(int songid, int genreid)
@@ -147,7 +154,10 @@ namespace PassionProjectV1.Controllers
                 SongName = Song.SongName,
                 Album = Song.Album,
                 AlbumUrl = Song.AlbumUrl,
-                Artist = Song.Artist
+                Artist = Song.Artist,
+                PicExtention = Song.PicExtention,
+                AlbumHasPic = Song.AlbumHasPic
+               
             };
             if (Song == null)
             {
@@ -160,6 +170,7 @@ namespace PassionProjectV1.Controllers
         // POST: api/SongData/UpdateSong/5
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateSong(int id, Song song)
         {
             Debug.WriteLine("I have reached the update song method!");
@@ -178,6 +189,9 @@ namespace PassionProjectV1.Controllers
             }
 
             db.Entry(song).State = EntityState.Modified;
+            // Picture update is handled by another method
+            db.Entry(song).Property(s => s.AlbumHasPic).IsModified = false;
+            db.Entry(song).Property(s => s.PicExtention).IsModified = false; 
 
             try
             {
@@ -200,8 +214,84 @@ namespace PassionProjectV1.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        //POST: api/SongData/UpdateSongPic/5
+        
+        [HttpPost]
+        
+        public IHttpActionResult UploadAlbumPic(int id)
+        {
+            bool haspic = false;
+            string picextension;
+            if (Request.Content.IsMimeMultipartContent())
+            {
+                Debug.WriteLine("Recieved the multipart form data.");
+
+                int numfiles = HttpContext.Current.Request.Files.Count;
+                Debug.WriteLine("Files Recieved: " + numfiles);
+
+                //Check if file is posted
+                if (numfiles == 1 && HttpContext.Current.Request.Files[0] != null)
+                {
+                    var albumpic = HttpContext.Current.Request.Files[0];
+                    //Check if file is empty
+                    if (albumpic.ContentLength > 0)
+                    {
+                        //establish valid file types 
+                        var valtypes = new[] { "jpeg", "jpg", "png", };
+                        var extension = Path.GetExtension(albumpic.FileName).Substring(1);
+                        //Check the extension of the file
+
+                        if (valtypes.Contains(extension))
+                        {
+                            try
+                            {
+                                //file name is the id of the image
+                                string fn = id + "." + extension;
+
+                                //get a direct file path to ~/Content/songs/{id}.{extension}
+                                string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/AlbumCovers/"), fn);
+
+                                //save file
+                                albumpic.SaveAs(path);
+
+                                //if successful then we can set fields
+                             
+                                haspic = true;
+                                Debug.WriteLine(haspic);
+                                picextension = extension;
+
+                                //Update the song haspic and picextension fields in the db
+                                Song SelectedSong = db.Songs.Find(id);
+                                SelectedSong.AlbumHasPic = haspic;
+                                SelectedSong.PicExtention = extension;
+                                db.Entry(SelectedSong).State = EntityState.Modified;
+
+                                db.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.WriteLine("album Image was not saved succesfully");
+                                Debug.WriteLine("Exception: " + ex);
+                                return BadRequest();
+                            }
+                        }
+                    }
+                }
+                return Ok();
+            }
+            else
+            {
+                //not multipart form data
+                return BadRequest();
+            }
+        }
+    
+        
+        
+
         // POST: api/SongData/AddSong
         [ResponseType(typeof(Song))]
+        [Authorize]
         [HttpPost]
         public IHttpActionResult AddSong(Song song)
         {
@@ -216,8 +306,9 @@ namespace PassionProjectV1.Controllers
             return CreatedAtRoute("DefaultApi", new { id = song.SongId }, song);
         }
 
-        // POST: api/SongData/DeleteAnimal/5
-        [ResponseType(typeof(Song))]
+        // POST: api/SongData/DeleteSong/5
+        [ResponseType(typeof(Song))]    
+        [Authorize]
         [HttpPost]
         public IHttpActionResult DeleteSong(int id)
         {

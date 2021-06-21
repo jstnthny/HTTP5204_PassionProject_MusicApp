@@ -3,20 +3,27 @@
 @{
     ViewBag.Title = "Create";
 }
+<div class="main-content">
+    <form action="/Song/List">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="SongList" value="List of Songs" />
+    </form>
+ 
 
-<h2>Create Song</h2>
+    <form action="/Song/Create" method="POST" class="create-new-song-form">
+        <h2 style="text-align:center">Add a New Song 🎧</h2>
+        <div class="form-group">
+            <label>Name:</label> <input type="text" name="SongName" />
+        </div>
+        <div class="form-group">
+            <label>Arist:</label> <input type="text" name="Artist" />
+        </div>
+        <div class="form-group">
+            <label>Album:</label> <input type="text" name="Album" />
+        </div>
+        <div class="form-group">
+            <input class="btn btn-info" type="submit" value="Add Song" />
+        </div>
+    </form>
 
-<form action="/Song/Create" method="POST">
-    <div>
-        <label>Name:</label> <input type="text" name="SongName" />
-    </div>
-    <div>
-        <label>Arist:</label> <input type="text" name="Artist" />
-    </div>
-    <div>
-        <label>Album:</label> <input type="text" name="Album" />
-    </div>
-    <div>
-        <input type="submit" value="Add Song" />
-    </div>
-</form>
+
+</div>

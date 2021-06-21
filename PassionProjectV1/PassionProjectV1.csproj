@@ -232,6 +232,14 @@
     <Compile Include="Migrations\202106040650222_test.Designer.cs">
       <DependentUpon>202106040650222_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106172137125_AnimalPicExtension.cs" />
+    <Compile Include="Migrations\202106172137125_AnimalPicExtension.Designer.cs">
+      <DependentUpon>202106172137125_AnimalPicExtension.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106172150292_animalpic.cs" />
+    <Compile Include="Migrations\202106172150292_animalpic.Designer.cs">
+      <DependentUpon>202106172150292_animalpic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genres.cs" />
@@ -246,6 +254,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AlbumCovers\default.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -321,6 +330,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -365,6 +375,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106040650222_test.resx">
       <DependentUpon>202106040650222_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106172137125_AnimalPicExtension.resx">
+      <DependentUpon>202106172137125_AnimalPicExtension.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106172150292_animalpic.resx">
+      <DependentUpon>202106172150292_animalpic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

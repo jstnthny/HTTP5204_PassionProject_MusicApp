@@ -18,7 +18,13 @@ namespace PassionProjectV1.Controllers
 
         static SongController()
         {
-            client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+            //cookies are manually set in RequestHeader
+            UseCookies = false
+            };        
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44300/api/");
         }
 
@@ -209,23 +215,38 @@ namespace PassionProjectV1.Controllers
         // POST: Song/Update/5
         [HttpPost]
         [Authorize]
-        public ActionResult Update(int id, Song song)
+        public ActionResult Update(int id, Song song, HttpPostedFileBase AlbumPic)
         {
             GetApplicationCookie();//get token credentials
-            string url = "songdata/updatesong/"+id;
+            string url = "songdata/updatesong/"+ id;
 
             string jsonpayload = jss.Serialize(song);
-
-            Debug.WriteLine(jsonpayload);
-
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
-
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             Debug.WriteLine(content);
-            if (response.IsSuccessStatusCode)
-            {
 
+
+            // update request is succesful, and image data is recieved
+            if (response.IsSuccessStatusCode && AlbumPic != null)
+            {
+                //Updating the song picture as a seperate request
+                Debug.WriteLine("Calling Update Image method");
+                //Send over image data
+                url = "SongData/UploadAlbumPic/" + id;
+                Debug.WriteLine("Recieved album picture " + AlbumPic.FileName);
+
+                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                HttpContent imagecontent = new StreamContent(AlbumPic.InputStream);
+                requestcontent.Add(imagecontent, "AlbumPic", AlbumPic.FileName);
+                response = client.PostAsync(url, requestcontent).Result;
+
+                return RedirectToAction("List");
+            }
+
+            else if(response.IsSuccessStatusCode)
+            {
+                //No image uploaded, but the update was still succesful
                 return RedirectToAction("List");
             }
             else

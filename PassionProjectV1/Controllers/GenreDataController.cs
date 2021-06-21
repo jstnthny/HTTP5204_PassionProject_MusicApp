@@ -30,7 +30,7 @@ namespace PassionProjectV1.Controllers
 
         [HttpGet]
         [ResponseType(typeof(GenreDto))]
-        public IHttpActionResult ListGenres()
+        public IHttpActionResult ListGenre()
         {
             List<Genres> Genres = db.Genres.ToList();
             List<GenreDto> GenreDtos = new List<GenreDto>();
@@ -110,26 +110,12 @@ namespace PassionProjectV1.Controllers
         }
 
         /*
-        [HttpGet]
-        public IEnumerable<GenreDto> ListGenres()
-        {
-            List<Genres> Genres = db.Genres.ToList();
-            List<GenreDto> GenreDtos = new List<GenreDto>();
-
-            Genres.ForEach(g => GenreDtos.Add(new GenreDto()
-            {
-                GenreId = g.GenreId,
-                Genre = g.Genre
-
-            }));
-
-            return GenreDtos;
-        }
+      
         */
         // GET: api/GenreData/FindGenre/5
         [ResponseType(typeof(Genres))]
         [HttpGet]
-        public IHttpActionResult FindGenres(int id)
+        public IHttpActionResult FindGenre(int id)
         {
             Genres Genre = db.Genres.Find(id);
             GenreDto GenreDto = new GenreDto()
@@ -148,6 +134,7 @@ namespace PassionProjectV1.Controllers
 
         // POST: api/UpdateGenre/5
         [ResponseType(typeof(void))]
+        [Authorize]
         [HttpPost]
         public IHttpActionResult UpdateGenre(int id, Genres genres)
         {
@@ -191,8 +178,9 @@ namespace PassionProjectV1.Controllers
 
         // POST: api/GenreData/AddGenre
         [ResponseType(typeof(Genres))]
+        [Authorize]
         [HttpPost]
-        public IHttpActionResult AddGenres(Genres genres)
+        public IHttpActionResult AddGenre(Genres genres)
         {
             if (!ModelState.IsValid)
             {
@@ -207,8 +195,9 @@ namespace PassionProjectV1.Controllers
 
         // POST: api/GenreData/DeleteGenre/5
         [ResponseType(typeof(Genres))]
+        [Authorize]
         [HttpPost]
-        public IHttpActionResult DeleteGenres(int id)
+        public IHttpActionResult DeleteGenre(int id)
         {
             Genres genres = db.Genres.Find(id);
             if (genres == null)

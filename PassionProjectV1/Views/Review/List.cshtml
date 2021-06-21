@@ -2,12 +2,54 @@
 @{
     ViewBag.Title = "List";
 }
+<div class="main-content">
+    <form action="/Review/New">
+        <input type="submit" class="btn btn-info" name="NewReview" value="Add a new Review" style="margin-top: 15px;"/>
+    </form>
 
-<a href="/Review/New">Add a new review</a>
-<h2>List</h2>
-@foreach (var review in Model)
-{
-    <h2><a href="/Review/Details/@review.ReviewId">@review.SongName</a></h2>
-    <div>@review.ReviewText</div>
-    <div>By: @review.fname @review.lname</div>
-}
+    <h2>Reviews</h2>
+    <div class="table-responsive"> 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Song Name</th>
+                    <th scope="col">Review</th>
+                    <th scope="col">Reviewer</th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+
+
+                @foreach (var review in Model)
+                {
+                <tr>
+                    <td><a href="/Review/Details/@review.ReviewId">@review.SongName</a></td>
+                    <td>@review.ReviewText</td>
+                    <td>@review.fname @review.lname</td>
+                    <td>
+                        <form action="/Review/Details/@review.ReviewId">
+                            <input type="submit" class="btn btn-info" name="ReviewDetails" value="Details" />
+                        </form>
+                    </td>
+                <td>
+                    <form action="/Review/Edit/@review.ReviewId">
+                        <input type="submit" class="btn btn-info" name="ReviewUpdate" value="Update" />
+                    </form>
+                </td>
+                </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>
+
+

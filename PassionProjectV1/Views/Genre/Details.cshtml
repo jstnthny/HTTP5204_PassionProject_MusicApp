@@ -4,20 +4,31 @@
     ViewBag.Title = "Details";
 }
 
-<a href="/Genre/List">List of genres</a>
-<br />
-<a style="color:darkred;" href="/Genre/DeleteConfirm/@Model.SelectedGenre.GenreId">Delete</a>
-<br />
-<a href="/Genre/Edit/@Model.SelectedGenre.GenreId">Update</a> <br />
+<div class="main-content">
+    <form action="/Genre/DeleteConfirm/@Model.SelectedGenre.GenreId">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-danger delete-btn" name="DeleteGenre" value="Delete" />
+    </form>
+    <form action="/Genre/List">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="GenreList" value="List of Genres" />
+    </form>
+    <form action="/Genre/Edit/@Model.SelectedGenre.GenreId">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="UpdateGenre" value="Update" />
+    </form>
 
-<h2>Genre: @Model.SelectedGenre.Genre</h2>
+    <div class="genres-list">
+        <h2> @Model.SelectedGenre.Genre Songs &#127925;</h2>
 
-<div>
-    <h3>Songs:</h3>
-    @foreach (var song in Model.SongGenre)
-    {
-        <a href="/Song/Details/@song.SongId">@song.SongName</a><br />
-    }
+        <div>
+            @foreach (var song in Model.SongGenre)
+            {
+                <ul class="list-of-genres">
+                    <li><a href="/Song/Details/@song.SongId">@song.SongName</a></li>
+                </ul>
 
- 
+            }
+
+
+        </div>
+    </div>
+   
 </div>

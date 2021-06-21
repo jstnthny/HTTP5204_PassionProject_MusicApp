@@ -3,24 +3,34 @@
 @{
     ViewBag.Title = "Edit";
 }
+<div class="main-content">
 
-<h2>Update Song</h2>
 
-<form action="/Song/Update/@Model.SongId" method="POST">
-    <div style="display:none;">
-        <input type="text" name="SongId" value="@Model.SongId" />
-    </div>
-    <div>
-        <label>Name:</label> <input type="text" name="SongName" value="@Model.SongName" />
-    </div>
-    <div>
-        <label>Arist:</label> <input type="text" name="Artist" value="@Model.Artist" />
-    </div>
-    <div>
-        <label>Album:</label> <input type="text" name="Album" value="@Model.Album" />
-    </div>
-    <div>
-        <input type="submit" value="Update Song" />
-    </div>
-</form>
+
+    <button class="btn btn-info song-list-song"><a href="/Song/List">List of songs</a></button>
+
+    <form action="/Song/Update/@Model.SongId" method="POST" enctype="multipart/form-data" class="update-song-form">
+        <h2>Update Song 🎧</h2>
+        <div style="display:none;">
+            <input type="text" name="SongId" value="@Model.SongId" />
+        </div>
+        <div class="form-group">
+            <label>Name:</label> <input type="text" name="SongName" value="@Model.SongName" />
+        </div>
+        <div class="form-group">
+            <label>Arist:</label> <input type="text" name="Artist" value="@Model.Artist" />
+        </div>
+        <div class="form-group">
+            <label>Album:</label> <input type="text" name="Album" value="@Model.Album" />
+        </div>
+        <div class="form-group">
+            <input type="file" name="AlbumPic" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Update Song" class="btn btn-info" />
+        </div>
+    </form>
+
+</div>
+
 

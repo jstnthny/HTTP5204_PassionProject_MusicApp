@@ -4,14 +4,16 @@
     ViewBag.Title = "DeleteConfirm";
 }
 
-<h2>Are you sure you want to delete this song?</h2>
-<a href="/Song/List">Cancel</a>
-<h2>@Model.SongName</h2>
-<div>Artist: @Model.Artist</div>
-<div>Album: @Model.Album</div>
+<div class="main-content">
+    <h2>Are you sure you want to delete this song?</h2>
+    <button class="btn btn-info"><a href="/Song/List">Cancel</a></button>
+    <h2>@Model.SongName</h2>
+    <p>Artist: @Model.Artist</p>
+    <p>Album: @Model.Album</p>
 
-<form action="/Song/Delete/@Model.SongId" method="POST">
-    <input type="submit" value="Confirm Delete"/>
+    <form action="/Song/Delete/@Model.SongId" method="POST">
+        <input class="btn btn-success" type="submit" value="Confirm Delete" />
 
 
-</form>
+    </form>
+</div>

@@ -4,55 +4,83 @@
     ViewBag.Title = "View";
 }
 
-<a href="/Song/List">List of songs</a> <br />
-<a href="/Song/Edit/@Model.SelectedSong.SongId">Update</a> <br />
-<a style="color:darkred;" href="/Song/DeleteConfirm/@Model.SelectedSong.SongId">Delete</a>
-<h2>@Model.SelectedSong.SongName</h2>
-<div>By @Model.SelectedSong.Artist</div>
-<div>Album: @Model.SelectedSong.Album</div>
+<div class="song-details-page">
 
-<div style="margin-top:50px">
-    <h3>Genres for @Model.SelectedSong.SongName</h3>
-    @foreach(var genre in Model.GenreForSong)
-    {
-        <a href="/Genre/Details/@genre.GenreId">@genre.Genre</a> 
-        <a style="color:red;" href="/Song/Remove/@Model.SelectedSong.SongId?genreid=@genre.GenreId">[x]</a> <br>
-        
-    }
 
-    <div>
-        <h3>
-            Add a new genre
-        </h3>
-        <form method="POST" action="/Song/AddNew/@Model.SelectedSong.SongId">
-            <select name="genreId">
-                @foreach (var genre in Model.AvailableGenres)
+    <button class="btn btn-info song-list-song"><a href="/Song/List">List of songs</a></button>
+    <button class="btn btn-danger delete-btn"><a href="/Song/DeleteConfirm/@Model.SelectedSong.SongId">Delete</a></button>
+    <br />
+    <button class="btn btn-info song-update-song"><a href="/Song/Edit/@Model.SelectedSong.SongId">Update</a></button>
+    <br />
+
+   
+    <div class="col-md-6 col-sm-12">
+        <h2>@Model.SelectedSong.SongName</h2>
+        @{
+            string imageurl = "/Content/AlbumCovers/default.jpg";
+            if (Model.SelectedSong.AlbumHasPic)
+            {
+                imageurl = "/Content/AlbumCovers/" + Model.SelectedSong.SongId + "." + Model.SelectedSong.PicExtention;
+            }
+        }
+
+        <div><img class="details-album" src=@imageurl alt="@Model.SelectedSong.Album" /></div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <h3>Song Details</h3>
+        <div><p>Artist/Band:  @Model.SelectedSong.Artist</p></div>
+        <div><p>Album: @Model.SelectedSong.Album</p></div>
+
+
+
+
+        <div style="margin-top:10px">
+            <h3>Genres:</h3>
+            @foreach (var genre in Model.GenreForSong)
+            {
+                <a href="/Genre/Details/@genre.GenreId">@genre.Genre</a>
+                <a style="color:red;" href="/Song/Remove/@Model.SelectedSong.SongId?genreid=@genre.GenreId">[x]</a> <br>
+
+            }
+
+            <div>
+                <h3>
+                    Add a new genre
+                </h3>
+                <form method="POST" action="/Song/AddNew/@Model.SelectedSong.SongId">
+                    <select name="genreId">
+                        @foreach (var genre in Model.AvailableGenres)
+                        {
+                            <option value="@genre.GenreId">@genre.Genre</option>
+                        }
+                    </select>
+                    <input type="submit" value="Add new genre" />
+
+                </form>
+
+            </div>
+
+        </div>
+        <div style="margin-top:10px; margin-bottom:75px;">
+            <h3>Song Reviews</h3>
+            @foreach (var review in Model.RelatedReviews)
+
+   
                 {
-                    <option value="@genre.GenreId">@genre.Genre</option>
+                    <ul>
+                        <li>
+                            <a href="/Review/Details/@review.ReviewId">@review.ReviewText</a>
+                        </li>
+                    </ul>
                 }
-            </select>
-            <input type="submit" value="Add new genre" />
 
-        </form>
-        
+
+            
+        </div>
     </div>
 
 </div>
 
-<div style="margin-top:50px;">
-    <h3>Reviews for song</h3>
-    @foreach(var review in Model.RelatedReviews)
-        
-    {
-        
-        <ul>
-            <li>
-                <a href="/Review/Details/@review.ReviewId">@review.ReviewText</a>
-            </li>
-        </ul>
-   
-    }
-</div>
 
 
 

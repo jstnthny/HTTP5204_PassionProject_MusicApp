@@ -19,7 +19,13 @@ namespace PassionProjectV1.Controllers
 
         static GenreController()
         {
-            client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                UseCookies = false
+            };
+
+            client = new HttpClient(handler);
             client.BaseAddress = new Uri("https://localhost:44300/api/");
         }
 
@@ -50,7 +56,7 @@ namespace PassionProjectV1.Controllers
             //curl https://localhost:44300/api/reviewdata/listgenres
 
 
-            string url = "genredata/listgenres";
+            string url = "genredata/listgenre";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             // Debug.WriteLine("The response code is ");
@@ -72,7 +78,7 @@ namespace PassionProjectV1.Controllers
             //curl https://localhost:44300/api/findgenres/{id}
 
 
-            string url = "genredata/findgenres/" + id;
+            string url = "genredata/findgenre/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             // Debug.WriteLine("The response code is ");
@@ -118,7 +124,7 @@ namespace PassionProjectV1.Controllers
             Debug.WriteLine(genres.GenreId);
             //objective: add a new song into our system using the API
             //curl -H "Content-Type:application/json" -d @genre.json https://localhost:44300/api/genredata/addgenres
-            string url = "genredata/addgenres";
+            string url = "genredata/addgenre";
 
 
             string jsonpayload = jss.Serialize(genres);
@@ -144,7 +150,7 @@ namespace PassionProjectV1.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            string url = "genredata/findgenres/" + id;
+            string url = "genredata/findgenre/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             GenreDto selectedgenre = response.Content.ReadAsAsync<GenreDto>().Result;
             return View(selectedgenre);
@@ -184,7 +190,7 @@ namespace PassionProjectV1.Controllers
         public ActionResult DeleteConfirm(int id)
         {
             GetApplicationCookie();
-            string url = "genredata/findgenres/" + id;
+            string url = "genredata/findgenre/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             GenreDto selectedgenre = response.Content.ReadAsAsync<GenreDto>().Result;
             return View(selectedgenre);
@@ -196,7 +202,7 @@ namespace PassionProjectV1.Controllers
         public ActionResult Delete(int id, FormCollection collection)
         {
             GetApplicationCookie();
-            string url = "genredata/deletegenres/" + id;
+            string url = "genredata/deletegenre/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "applicaiton/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

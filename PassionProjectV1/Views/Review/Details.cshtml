@@ -3,13 +3,26 @@
 @{
     ViewBag.Title = "Details";
 }
+<form action="/Review/DeleteConfirm/@Model.ReviewId">
+    <input style="margin-top: 15px;" type="submit" class="btn btn-danger delete-btn" name="ReviewDelete" value="Delete" />
+</form>
+<form action="/Review/List">
+    <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="ReviewList" value="Reviews List" />
+</form>
+<form action="/Review/Edit/@Model.ReviewId">
+    <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="ReviewUpdate" value="Update Review" />
+</form>
 
-<a href="/Review/List">List of reviews</a>
-<br />
-<a href="/Review/Edit/@Model.ReviewId">Update</a> <br />
-<a style="color:darkred;" href="/Review/DeleteConfirm/@Model.ReviewId">Delete</a>
 
 <h2>@Model.SongName</h2>
-<div>@Model.ReviewText</div>
-<div>By: @Model.fname @Model.lname</div>
+<p>By: @Model.fname @Model.lname</p>
+<div class="review-text-container">
+    <div>@Model.ReviewText</div>
+
+
+</div>
+
+
+
+
 

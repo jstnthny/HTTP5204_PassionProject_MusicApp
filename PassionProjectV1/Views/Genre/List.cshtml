@@ -4,9 +4,48 @@
     ViewBag.Title = "List";
 }
 
-<a href="/Genre/New">Add a new genre</a>
-<h2>List of genres</h2>
-@foreach (var genre in Model)
-{
-    <h2><a href="/Genre/Details/@genre.GenreId">@genre.Genre</a></h2>
-}
+<div class="main-content">
+
+    <form action="/Genre/New">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="NewSong" value="Add a new Genre" />
+    </form>
+    <h2>Genres</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Genre</th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var genre in Model)
+            {
+                <tr>
+                    <td><a href="/Genre/Details/@genre.GenreId">@genre.Genre</a></td>
+                    <td>
+                        <form action="/Genre/Details/@genre.GenreId">
+                            <input type="submit" class="btn btn-info" name="SongDetails" value="Details" />
+                        </form>
+
+                    </td>
+                    <td>
+                        <form action="/Genre/Edit/@genre.GenreId">
+                            <input type="submit" class="btn btn-info" name="SongUpdate" value="Update" />
+                        </form>
+                    </td>
+
+                </tr>
+
+            }
+
+
+        </tbody>
+
+
+    </table>
+
+</div>
+

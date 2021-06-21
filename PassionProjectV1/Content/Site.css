@@ -1,6 +1,137 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #000;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+    body p {
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: 1px;
+    }
+
+.background-img{
+    background-image: url("Images/headphones.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   opacity: 0.9;
+  
+
+}
+
+/*Nav bar*/
+.navbar-inverse {
+    background-color: #5D3CB9;
+    border-color: #5D3CB9;
+    
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+         color: #fff;
+    }
+
+    .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+        color: #8494F8;
+    }
+
+
+.btn-info {
+    color: #fff;
+    background-color: #5D3CB9;
+    border-color: #5D3CB9;
+}
+
+    .btn-info:hover {
+        color: #fff;
+        background-color: #5D3CB9;
+        border-color: #5D3CB9;
+    }
+
+    .btn-info:active {
+        color: #fff !important;
+        background-color: #5D3CB9 !important;
+        border-color: #5D3CB9 !important;
+    }
+
+    .btn-info:focus {
+        color: #fff;
+        background-color: #5D3CB9;
+        border-color: #5D3CB9;
+    }
+
+    .btn-info a:hover{
+        color: #fff;
+    }
+.background-img h1, p{
+    color: white;
+    opacity: 1;
+    font-weight: bold;
+ 
+ 
+}
+
+
+/* Index main*/
+
+.index-body p, h2{
+    color: #fff;
+
+}
+
+.index-body h2 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.index-body p {
+    font-size: 1.5em;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+}
+
+.song-index {
+    background-image: url("Images/songs-index.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 250px;
+    width: 29%;
+    margin: 10px;
+    border-radius: 25px;
+    text-align: right;
+}
+
+.review-index {
+    background-image: url("Images/reviews-index.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 250px;
+    width: 29%;
+    margin: 10px;
+    border-radius: 25px;
+    text-align: right;
+}
+
+.genres-index {
+    position: relative;
+    background: rgba(204, 204, 204, 0.5);
+    background-image: url("Images/genres-index.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 250px;
+    width: 29%;
+    margin: 10px;
+    border-radius: 25px;
+    text-align: right;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -8,6 +139,180 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+/*Table stylings
+
+*/
+.main-content table, a{
+    color: #fff;
+}
+
+.main-content table a:hover{
+    color: #fff;
+}
+
+table tr {
+    background-color: #0d0d0d;
+    
+}
+
+/*Song page styling*/
+.add-new-song{
+    margin-top: 10px;
+}
+
+.song-list-song, .song-update-song{
+    margin: 10px 0;
+}
+
+.song-details-page h3{
+    color: #fff;
+}
+
+.song-details-page a:hover{
+    color: #913cc3;
+    text-decoration: none;
+}
+
+.delete-btn{
+    float: right;
+    margin-top: 10px;
+}
+
+.main-content .create-new-song-form{
+    margin: 2em auto;
+    padding: 2em 0;
+    text-align: center;
+    border: 1px solid #5D3CB9;
+    width: 40%;
+ 
+}
+
+    .main-content .create-new-song-form label{
+        color: #fff;
+        margin-right: 5px;
+    }
+
+    .main-content .create-new-song-form .form-group {
+        margin: 2em 0;
+    }
+
+.main-content .update-song-form {
+    margin: 2em auto;
+    padding: 2em 0;
+    text-align: center;
+    border: 1px solid #5D3CB9;
+    width: 40%;
+}
+
+.main-content .update-song-form input[type="file"] {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.main-content .update-song-form label {
+    color: #fff;
+    margin-right: 5px;
+}
+        
+/*Review page Styling*/
+
+.review-text-container{
+    background-color: snow;
+    padding: 1em 0 5em 0;
+
+}
+
+.main-content .update-review-form {
+    margin: 2em auto;
+    padding: 2em 0;
+    text-align: center;
+    border: 1px solid #5D3CB9;
+    width: 40%;
+}
+
+.main-content .update-review-form label{
+    color: #fff;
+    margin-right: 5px;
+}
+
+.main-content .new-review-form {
+    margin: 2em auto;
+    padding: 2em 0;
+    text-align: center;
+    border: 1px solid #5D3CB9;
+    width: 40%;
+}
+
+.main-content .new-review-form label {
+    color: #fff;
+    margin-right: 5px;
+}
+
+
+/*Genre Page Styling*/
+
+
+
+.main-content .update-genre-form {
+    margin: 2em auto;
+    padding: 2em 0;
+    text-align: center;
+    border: 1px solid #5D3CB9;
+    width: 40%;
+}
+
+    .main-content .update-genre-form label {
+        color: #fff;
+        margin-right: 5px;
+    }
+
+.main-content .new-genre-form {
+    margin: 2em auto;
+    padding: 2em 0;
+    text-align: center;
+    border: 1px solid #5D3CB9;
+    width: 40%;
+}
+
+    .main-content .new-review-form label {
+        color: #fff;
+        margin-right: 5px;
+    }
+
+.update-genre-form input[type="submit"] {
+    margin-top: 15px;
+}
+
+.genres-list {
+    margin: 2em auto;
+    padding: 2em 0;
+    text-align: center;
+    border: 1px solid #5D3CB9;
+    width: 40%;
+}
+
+.genres-list h2{
+   text-align: center;
+   margin-top: 0;
+   margin-bottom: 20px;
+}
+
+.list-of-genres{
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+
+.list-of-genres li{
+    list-style: none;
+}
+
+    .list-of-genres li a:hover {
+        color: #913cc3;  
+        text-decoration: none;
+    }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -21,4 +326,18 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+/*Details Page*/
+
+.details-album{
+    max-width: 300px;
+}
+
+/* Footer*/
+
+footer {
+   /* background-color: #1B103A; */
+    padding: 1em;
 }

@@ -4,40 +4,58 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Review</h2>
+<div class="main-content">
+    <form action="/Review/List">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="ReviewList" value="Reviews List" />
+    </form>
 
 
-<form action="/Review/Update/@Model.SelectedReview.ReviewId" method="POST">
-    <div style="display:none;">
-        <input type="text" name="ReviewId" value="@Model.SelectedReview.ReviewId" />
-    </div>
-    
-    <div>
-        <h2>@Model.SelectedReview.SongName</h2>
-   
-    </div>
-    <div>
-        <label>Song Id:</label>
-        <select name="SongId">
-            @foreach (var songs in Model.SongOptions)
-            {
-                <option value="@songs.SongId">@songs.SongName</option>
-            }
 
-        </select>
+    <form action="/Review/Update/@Model.SelectedReview.ReviewId" method="POST" class="update-review-form">
+ 
+        <h2>Update Review For</h2>
+        <div style="display:none;">
+            <input type="text" name="ReviewId" value="@Model.SelectedReview.ReviewId" />
+        </div>
 
-    </div>
-    <div>
-        <label>Review:</label> <input type="text" name="ReviewText" value="@Model.SelectedReview.ReviewText" />
-    </div>
-    <div>
-        <label>First Name:</label> <input type="text" name="fname" value="@Model.SelectedReview.fname" />
-    </div>
-    <div>
-        <label>Last Name:</label> <input type="text" name="lname" value="@Model.SelectedReview.lname" />
-    </div>
-    <div>
-        <input type="submit" value="Update Review" />
-    </div>
-</form>
+        <div>
+            <h2>@Model.SelectedReview.SongName</h2>
+
+        </div>
+        <div class="form-group">
+            <label>Song Name:</label>
+            <select name="SongId">
+                @foreach (var songs in Model.SongOptions)
+                {
+                    var selected = "";
+                    if (songs.SongName == Model.SelectedReview.SongName)
+                    {
+                        selected = "selected";
+                    }
+                    <option value="@songs.SongId" @selected>@songs.SongName</option>
+                }
+
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label>First Name:</label> <input type="text" name="fname" value="@Model.SelectedReview.fname" />
+        </div>
+
+        <div class="form-group">
+            <label>Last Name:</label> <input type="text" name="lname" value="@Model.SelectedReview.lname" />
+        </div>
+
+        <div class="form-group">
+            <label>Review:</label> <textarea type="text" name="ReviewText">@Model.SelectedReview.ReviewText</textarea>
+        </div>
+
+        <div>
+            <input type="submit" value="Update Review" class="btn btn-info" />
+        </div>
+    </form>
+
+
+
+</div>
 

@@ -4,16 +4,27 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update Genre</h2>
+<div class="main-content">
 
-<form action="/Genre/Update/@Model.GenreId" method="POST">
-    <div style="display:none;">
-        <input type="text" name="GenreId" value="@Model.GenreId" />
-    </div>
-    <div>
-        <label>Genre:</label> <input type="text" name="Genre" value="@Model.Genre" />
-    </div>
-    <div>
-        <input type="submit" value="Add new Genre" />
-    </div>
-</form>
+    <form action="/Genre/List">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="SongList" value="List of Genres" />
+    </form>
+
+    <form action="/Genre/Update/@Model.GenreId" method="POST" class="update-genre-form">
+        <h2>Update Genre &#127925;</h2>
+        <div style="display:none;">
+            <input type="text" name="GenreId" value="@Model.GenreId" />
+        </div>
+        <div>
+            <label>Genre:</label> <input type="text" name="Genre" value="@Model.Genre" />
+        </div>
+        <div>
+            <input type="submit" value="Add new Genre" class="btn btn-info" />
+        </div>
+    </form>
+
+
+</div>
+
+
+

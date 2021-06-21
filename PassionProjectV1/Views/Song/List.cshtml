@@ -3,17 +3,54 @@
     ViewBag.Title = "List";
 }
 
-<a href="/Song/New">Add a new song</a>
-<h2>Songs</h2>
+<div class="main-content">
+    <form action="/Song/New">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="NewSong" value="Add a new Song" />
+    </form>
+    <h2>Songs</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Song Name</th>
+                    <th scope="col">Artist/Band</th>
+                    <th scope="col">Album</th>
+                    <th scope="col"> </th>
+                    <th scope="col"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var song in Model)
+                {
+                    <tr>
 
 
-@foreach (var song in Model)
-{
-    
 
-    <h2><a href="/Song/Details/@song.SongId">@song.SongName</a></h2>
-    <div>By @song.Artist</div>
-    <div>Album: @song.Album</div>
+                        <td><a href="/Song/Details/@song.SongId">@song.SongName</a></td>
+                        <td>@song.Artist</td>
+                        <td>@song.Album</td>
+                        <td>
+                            <form action="/Song/Details/@song.SongId">
+                                <input type="submit" class="btn btn-info" name="SongDetails" value="Details" />
+                            </form>
 
-}
+                        </td>
+                        <td>
+                            <form action="/Song/Edit/@song.SongId">
+                                <input type="submit" class="btn btn-info" name="SongUpdate" value="Update" />
+                            </form>
+                        </td>
+                    </tr>
 
+                }
+
+            </tbody>
+
+
+
+
+        </table>
+    </div>
+
+
+</div>
