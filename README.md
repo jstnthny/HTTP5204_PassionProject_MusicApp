@@ -52,7 +52,7 @@ Genre List
 
 ![alt text](https://github.com/justin-abante/HTTP5204_PassionProject_MusicApp/blob/main/screenshots/genreList.PNG "Genre List")
 
-## References 
+## Resources 
 
 - [Christine's Example](https://github.com/christinebittle/ZooApplication_5)
 - [Search Feature](https://www.youtube.com/watch?v=Slw-gs2vcWo&t=623s)
