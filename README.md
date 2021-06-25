@@ -54,6 +54,6 @@ Genre List
 
 ## References 
 
-[Christine's Example](https://github.com/christinebittle/ZooApplication_5)
-[Search Feature](https://www.youtube.com/watch?v=Slw-gs2vcWo&t=623s)
+- [Christine's Example](https://github.com/christinebittle/ZooApplication_5)
+- [Search Feature](https://www.youtube.com/watch?v=Slw-gs2vcWo&t=623s)
 
