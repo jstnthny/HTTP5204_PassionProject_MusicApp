@@ -284,7 +284,7 @@ namespace PassionProjectV1.Controllers
                     if (albumpic.ContentLength > 0)
                     {
                         //establish valid file types 
-                        var valtypes = new[] { "jpeg", "jpg", "png", };
+                        var valtypes = new[] { "jpeg", "jpg", "png", "PNG" };
                         var extension = Path.GetExtension(albumpic.FileName).Substring(1);
                         //Check the extension of the file
 

@@ -6,14 +6,17 @@
 
 <div class="song-details-page">
 
+    <form action="/Song/DeleteConfirm/@Model.SelectedSong.SongId">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-danger delete-btn" name="ReviewDelete" value="Delete" />
+    </form>
+    <form action="/Song/List">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="ReviewList" value="List of Songs" />
+    </form>
+    <form action="/Song/Edit/@Model.SelectedSong.SongId">
+        <input style="margin-top: 15px;" type="submit" class="btn btn-info" name="ReviewUpdate" value="Update Song" />
+    </form>
 
-    <button class="btn btn-info song-list-song"><a href="/Song/List">List of songs</a></button>
-    <button class="btn btn-danger delete-btn"><a href="/Song/DeleteConfirm/@Model.SelectedSong.SongId">Delete</a></button>
-    <br />
-    <button class="btn btn-info song-update-song"><a href="/Song/Edit/@Model.SelectedSong.SongId">Update</a></button>
-    <br />
 
-   
     <div class="col-md-6 col-sm-12">
         <h2>@Model.SelectedSong.SongName</h2>
         @{
@@ -65,17 +68,19 @@
             <h3>Song Reviews</h3>
             @foreach (var review in Model.RelatedReviews)
 
-   
-                {
-                    <ul>
-                        <li>
-                            <a href="/Review/Details/@review.ReviewId">@review.ReviewText</a>
-                        </li>
-                    </ul>
-                }
 
+            {
+                <ul>
+                    <li>
+                        <a href="/Review/Details/@review.ReviewId">@review.ReviewText</a>
+                    </li>
+                </ul>
+            }
 
-            
+            <form action="/Review/New">
+                <input type="submit" class="btn btn-info" name="NewReview" value="Add a new Review" style="margin-top: 15px;" />
+            </form>
+
         </div>
     </div>
 

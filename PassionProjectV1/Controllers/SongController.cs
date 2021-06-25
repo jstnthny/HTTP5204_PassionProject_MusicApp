@@ -49,7 +49,8 @@ namespace PassionProjectV1.Controllers
             return;
         }
         // GET: Song/List
-        public ActionResult List()
+        //adding search function (string search) 
+        public ActionResult List(string search)
         {
             //objective: communicate with or song data api to retrieve a list of songs
             //curl https://localhost:44300/api/songdata/listsongs
@@ -61,12 +62,23 @@ namespace PassionProjectV1.Controllers
            // Debug.WriteLine("The response code is ");
            // Debug.WriteLine(response.StatusCode);
 
-            IEnumerable<SongDto> songs = response.Content.ReadAsAsync<IEnumerable<SongDto>>().Result;
+          ///  IEnumerable<SongDto> songs = response.Content.ReadAsAsync<IEnumerable<SongDto>>().Result;
           //  Debug.WriteLine("Number of songs recieved");
           //  Debug.WriteLine(songs.Count());
             
+            /// Adding search feature
+            if (response.IsSuccessStatusCode)
+            {
+                IEnumerable<SongDto> SelectedSong = response.Content.ReadAsAsync<IEnumerable<SongDto>>().Result;
+                return View(search == null ? SelectedSong :
+                    SelectedSong.Where(x => x.Artist.IndexOf(search, StringComparison.OrdinalIgnoreCase) >=0).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
 
-            return View(songs);
+           /// return View(songs);
         }
 
         // GET: Song/Details/5

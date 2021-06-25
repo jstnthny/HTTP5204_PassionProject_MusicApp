@@ -11,17 +11,21 @@
 
    
 
-    <form action="/Review/Create" method="POST" class="new-review-form">
+    <form action="/Review/Create/" method="POST" class="new-review-form">
         <h2>Create A New Review &#128196;</h2>
         <div>
-            <label>Song Name:</label>
-            <select name="SongId">
-                @foreach (var songs in Model)
-                {
-                    <option value="@songs.SongId">@songs.SongName</option>
-                }
 
-            </select>
+            <label>Song Name:</label>
+       
+                <select name="SongId">
+                    @foreach (var songs in Model)
+                    {
+                        <option value="@songs.SongId">@songs.SongName</option>
+                    }
+
+                </select>
+
+    
 
         </div>
         <div class="form-group">
@@ -31,7 +35,7 @@
             <label>Last Name:</label> <input type="text" name="lname" />
         </div>
         <div class="form-group">
-            <label>Review:</label> <textarea type="text" name="ReviewText" ></textarea>
+            <label>Review:</label> <textarea type="text" name="ReviewText"></textarea>
         </div>
 
         <div>

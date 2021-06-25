@@ -42,7 +42,7 @@ namespace PassionProjectV1.Controllers
             return;
         }
         // GET: Review/List
-        public ActionResult List()
+        public ActionResult List(string search)
         {
             //objective: communicate with our review data api to retrieve a list of reviews
             //curl https://localhost:44300/api/reviewdata/listreviews
@@ -54,11 +54,21 @@ namespace PassionProjectV1.Controllers
              Debug.WriteLine("The response code is ");
              Debug.WriteLine(response.StatusCode);
 
-            IEnumerable<ReviewDto> reviews = response.Content.ReadAsAsync<IEnumerable<ReviewDto>>().Result;
+            ///IEnumerable<ReviewDto> reviews = response.Content.ReadAsAsync<IEnumerable<ReviewDto>>().Result;
           
+            ///Adding Search Feature
+            
+            if (response.IsSuccessStatusCode)
+            {
+                IEnumerable<ReviewDto> SelectedSong = response.Content.ReadAsAsync<IEnumerable<ReviewDto>>().Result;
+                return View(search == null ? SelectedSong :
+                    SelectedSong.Where(x => x.SongName.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
 
-
-            return View(reviews);
         }
 
         // GET: Review/Details/5

@@ -125,3 +125,5 @@ C:\Users\Justin\source\repos\PassionProjectV1\PassionProjectV1\obj\Debug\Passion
 C:\Users\Justin\source\repos\PassionProjectV1\PassionProjectV1\obj\Debug\PassionProjectV1.Migrations.test.resources
 C:\Users\Justin\source\repos\PassionProjectV1\PassionProjectV1\obj\Debug\PassionProjectV1.Migrations.AnimalPicExtension.resources
 C:\Users\Justin\source\repos\PassionProjectV1\PassionProjectV1\obj\Debug\PassionProjectV1.Migrations.animalpic.resources
+C:\Users\Justin\source\repos\PassionProjectV1\PassionProjectV1\obj\Debug\PassionProjectV1.Migrations.songNames.resources
+C:\Users\Justin\source\repos\PassionProjectV1\PassionProjectV1\obj\Debug\PassionProjectV1.Migrations.newReview.resources

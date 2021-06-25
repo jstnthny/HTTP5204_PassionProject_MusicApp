@@ -240,6 +240,14 @@
     <Compile Include="Migrations\202106172150292_animalpic.Designer.cs">
       <DependentUpon>202106172150292_animalpic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106231755498_songNames.cs" />
+    <Compile Include="Migrations\202106231755498_songNames.Designer.cs">
+      <DependentUpon>202106231755498_songNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106232247136_newReview.cs" />
+    <Compile Include="Migrations\202106232247136_newReview.Designer.cs">
+      <DependentUpon>202106232247136_newReview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genres.cs" />
@@ -249,6 +257,7 @@
     <Compile Include="Models\Song.cs" />
     <Compile Include="Models\ViewModels\DetailsGenre.cs" />
     <Compile Include="Models\ViewModels\DetailsSong.cs" />
+    <Compile Include="Models\ViewModels\NewReview.cs" />
     <Compile Include="Models\ViewModels\UpdateReview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -381,6 +390,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106172150292_animalpic.resx">
       <DependentUpon>202106172150292_animalpic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106231755498_songNames.resx">
+      <DependentUpon>202106231755498_songNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106232247136_newReview.resx">
+      <DependentUpon>202106232247136_newReview.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

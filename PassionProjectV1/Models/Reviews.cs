@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,13 +30,15 @@ namespace PassionProjectV1.Models
     {
         public int ReviewId { get; set; }
 
+        [DisplayName("Review Text")]
         public string ReviewText { get; set; }
-
+        [DisplayName("First Name")]
         public string fname { get; set; }
-
+        [DisplayName("Last Name")]
         public string lname { get; set; }
 
         public int SongId { get; set; }
+        [DisplayName("Song Name")]
         public string SongName { get; set; }
     }
 }

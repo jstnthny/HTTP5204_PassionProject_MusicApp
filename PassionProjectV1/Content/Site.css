@@ -341,3 +341,25 @@ footer {
    /* background-color: #1B103A; */
     padding: 1em;
 }
+
+/* Media Queries*/
+
+@media screen and (max-width: 768px) {
+    .flex-container{
+        display: flex;
+        justify-content: center;
+    }
+    .song-index, .review-index, .genres-index {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (max-width: 375px) {
+    .song-index, .review-index, .genres-index {
+        width: 85%;
+        margin: 0 auto;
+    }
+
+}

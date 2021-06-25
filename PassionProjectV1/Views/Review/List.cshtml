@@ -8,12 +8,27 @@
     </form>
 
     <h2>Reviews</h2>
+
+    <p>
+        @using (Html.BeginForm("List", "Review", FormMethod.Get))
+        {
+            @Html.TextBox("search") <input type="submit" value="search" />
+        }
+    </p>
+
+    <p>@Html.ActionLink("View All Reviews", "List")</p>
+
+    @if (Model.Count() == 0)
+    {
+        <p>There are no results for that search</p>
+    }
+
     <div class="table-responsive"> 
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Song Name</th>
-                    <th scope="col">Review</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.SongName)</th>
+                    <th scope="col"> @Html.DisplayNameFor(model => model.ReviewText)</th>
                     <th scope="col">Reviewer</th>
                     <th scope="col"> </th>
                     <th scope="col"> </th>
@@ -24,19 +39,19 @@
             <tbody>
 
 
-                @foreach (var review in Model)
+                @foreach (var item in Model)
                 {
                 <tr>
-                    <td><a href="/Review/Details/@review.ReviewId">@review.SongName</a></td>
-                    <td>@review.ReviewText</td>
-                    <td>@review.fname @review.lname</td>
+                    <td>@Html.DisplayFor(modelItem => item.SongName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ReviewText)</td>
+                    <td>@Html.DisplayFor(modelItem => item.fname) @Html.DisplayFor(modelItem => item.lname)</td>
                     <td>
-                        <form action="/Review/Details/@review.ReviewId">
+                        <form action="/Review/Details/@item.ReviewId">
                             <input type="submit" class="btn btn-info" name="ReviewDetails" value="Details" />
                         </form>
                     </td>
                     <td>
-                        <form action="/Review/Edit/@review.ReviewId">
+                        <form action="/Review/Edit/@item.ReviewId">
                             <input type="submit" class="btn btn-info" name="ReviewUpdate" value="Update" />
                         </form>
                     </td>
